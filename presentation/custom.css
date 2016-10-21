@@ -1,0 +1,8 @@
+pre code {
+  font-size: 125%;
+}
+
+pre {
+  overflow: auto;
+  max-height: 500px;
+}
