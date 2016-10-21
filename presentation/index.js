@@ -64,113 +64,51 @@ export default class Presentation extends React.Component {
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Heading caps fit size={1}>
-              JavaScript Usage on Sites
-            </Heading>
-            <Markdown>
-          {`
-* 2011 - 38.2%
-* 2013 - 60.4%
-* 2015 - 70.5%
-* 2016 - 73.5%
-* Source: [W3Techs](http://w3techs.com/technologies/history_overview/javascript_library/all/y)
-          `}
-            </Markdown>
-          </Slide>
-
-          <Slide transition={slideTransition}>
-            <Appear fid="1">
-              <Heading size={2} caps fit>
-                Inline JavaScript
-              </Heading>
-            </Appear>
-            <Appear fid="2">
-              <Heading size={2} caps fit textColor="tertiary">
-                AJAX (async)
-              </Heading>
-            </Appear>
-            <Appear fid="3">
-              <Heading size={2} caps fit>
-                Single Page Applications
-              </Heading>
-            </Appear>
-            <Appear fid="3">
-              <Heading size={2} caps fit textColor="tertiary">
-                Universal JavaScript
-              </Heading>
-            </Appear>
-          </Slide>
-
-          <Slide transition={slideTransition} bgColor="black">
-            <BlockQuote>
-              <Quote>Java is to JavaScript as car is to carpet</Quote>
-            </BlockQuote>
-          </Slide>
-
-          <Slide transition={slideTransition}>
-            <Heading caps fit size={1}>
-              Build Tools
-            </Heading>
-            <Layout>
-              <Table>
-                <thead>
-                  <TableRow>
-                    <TableHeaderItem>1st Gen.</TableHeaderItem>
-                    <TableHeaderItem>2nd Gen.</TableHeaderItem>
-                    <TableHeaderItem>3rd Gen.</TableHeaderItem>
-                  </TableRow>
-                </thead>
-                <tbody>
-                  <TableRow>
-                    <TableItem>Make</TableItem>
-                    <TableItem>Grunt</TableItem>
-                    <TableItem>Browserify</TableItem>
-                  </TableRow>
-                  <TableRow>
-                    <TableItem></TableItem>
-                    <TableItem>Gulp</TableItem>
-                    <TableItem>Webpack</TableItem>
-                  </TableRow>
-                  <TableRow>
-                    <TableItem></TableItem>
-                    <TableItem>Broccoli</TableItem>
-                    <TableItem>JSPM</TableItem>
-                  </TableRow>
-                </tbody>
-              </Table>
-            </Layout>
-          </Slide>
-
-          <Slide transition={slideTransition}>
             <Heading size={1}>
-              The Problem of Template
+              <Link href="https://facebook.github.io/react/docs/perf.html">React Performance Tools</Link> 1/2
             </Heading>
             <List>
-              <Appear><ListItem>Problem 1</ListItem></Appear>
-              <Appear><ListItem>Problem 2</ListItem></Appear>
-              <Appear><ListItem><Link href="https://facebook.github.io/flux/">Flux</Link> - Actions, stores, dispatcher</ListItem></Appear>
+              <Appear><ListItem>Development mode only - performance overhead</ListItem></Appear>
+              <Appear><ListItem>Measure with <code>Perf.start()</code> and <code>Perf.stop()</code></ListItem></Appear>
+              <Appear><ListItem>Get results with <code>Perf.getLastMeasurements()</code></ListItem></Appear>
             </List>
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Image src={images.survivejs} margin="40px auto" height="324px" />
+            <Heading size={1}>
+              <Link href="https://facebook.github.io/react/docs/perf.html">React Performance Tools</Link> 2/2
+            </Heading>
+            <List>
+              <Appear><ListItem><code>Perf.printInclusive(measurements)</code></ListItem></Appear>
+              <Appear><ListItem><code>Perf.printExclusive(measurements)</code></ListItem></Appear>
+              <Appear><ListItem><code><b>Perf.printWasted(measurements)</b></code></ListItem></Appear>
+              <Appear><ListItem><code>Perf.printOperations(measurements)</code></ListItem></Appear>
+            </List>
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Heading size={2}>
-              Solution
+            <Heading size={1}>
+              Chrome Tips
             </Heading>
+            <List>
+              <Appear><ListItem>Note the flashing at the <b>Elements</b> tab</ListItem></Appear>
+              <Appear><ListItem>Keep an eye on the <b>Network</b> tab (latency)</ListItem></Appear>
+              <Appear><ListItem>Take a memory snapshot and analyze at the <b>Profiles</b> tab</ListItem></Appear>
+              <Appear><ListItem>Note different performance in development/production!</ListItem></Appear>
+              <Appear><ListItem><Link href="https://developers.google.com/web/tools/chrome-devtools/profile/memory-problems/memory-diagnosis">Google tutorial</Link></ListItem></Appear>
+            </List>
           </Slide>
 
           <Slide transition={slideTransition}>
-            <Heading size={4}>
-              Minimal Demo
+            <Heading size={1}>
+              React Tips
             </Heading>
-            <CodePane
-              lang="jsx"
-              source={require("raw!../examples/demo.jsx")}
-              margin="20px auto"
-            />
+            <List>
+              <Appear><ListItem>Remember to set <code>process.env.NODE_ENV</code> to <code>production</code> when building</ListItem></Appear>
+              <Appear><ListItem>Consider using <Link href="https://www.npmjs.com/package/react-lite">react-lite</Link> or <Link href="https://www.npmjs.com/package/preact">preact</Link></ListItem></Appear>
+              <Appear><ListItem>Leverage client caching (React, other deps) through vendor bundles (hash in name)</ListItem></Appear>
+              <Appear><ListItem>Consider loading vendor dependencies through a CDN with a local fallback</ListItem></Appear>
+            </List>
           </Slide>
 
           <Slide transition={slideTransition}>
@@ -178,9 +116,10 @@ export default class Presentation extends React.Component {
               Exercises
             </Heading>
             <List>
-              <Appear><ListItem>Exercise 1</ListItem></Appear>
-              <Appear><ListItem>*Exercise 2</ListItem></Appear>
-              <Appear><ListItem>**Exercise 3</ListItem></Appear>
+              <Appear><ListItem>Profile the performance of your React application using <Link href="https://facebook.github.io/react/docs/perf.html">React Performance Tools</Link></ListItem></Appear>
+              <Appear><ListItem>Profile the memory usage of your React application using Chrome utilities</ListItem></Appear>
+              <Appear><ListItem>*Build your application in production mode and try again. Can you see a difference?</ListItem></Appear>
+              <Appear><ListItem>**Build your application with <Link href="https://www.npmjs.com/package/react-lite">react-lite</Link> and try again. Can you see a difference?</ListItem></Appear>
             </List>
           </Slide>
 

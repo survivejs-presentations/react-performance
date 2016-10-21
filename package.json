@@ -8,7 +8,7 @@
     "clean": "rimraf dist",
     "build": "NODE_ENV=production webpack --config webpack.config.production.js",
     "lint": "eslint --ext .js,.jsx .",
-    "deploy": "npm run build && npm run copy && node ./src/deploy.js",
+    "deploy": "npm run build && npm run copy && gh-pages -d out",
     "copy": "rm -rf out && mkdir -p out && cp index.html out/ && cp -rf images out/images && cp -rf dist out/dist",
     "start": "NODE_ENV=development node server.js"
   },
