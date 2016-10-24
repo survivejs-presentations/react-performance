@@ -248,6 +248,7 @@ export default class Presentation extends React.Component {
               <Appear><ListItem><Link href="https://speakerdeck.com/vjeux/react-rally-animated-react-performance-toolbox">Slides - Animated! by @vjeux</Link></ListItem></Appear>
               <Appear><ListItem><Link href="http://benchling.engineering/performance-engineering-with-react/">Performance Engineering with React (two parts) by Saif Hakim</Link></ListItem></Appear>
               <Appear><ListItem><Link href="https://medium.com/modus-create-front-end-development/component-rendering-performance-in-react-df859b474adc">Component Rendering Performance in React by Grgur Grisogono</Link></ListItem></Appear>
+              <Appear><ListItem><Link href="https://github.com/timarney/react-faq/blob/master/README.md#performance">Tim {`Arney's`} links on performance</Link></ListItem></Appear>
             </List>
           </Slide>
 
