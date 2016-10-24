@@ -40,6 +40,11 @@ require("./custom.css");
 
 const slideTransition = ["slide"];
 const images = mapValues({
+  lifecycle: require("../images/lifecycle.png"),
+  progressBarStopped: require("../images/progress-bar-stopped.gif"),
+  progressBar: require("../images/progress-bar.gif"),
+  redPanda: require("../images/red-panda.jpg"),
+  squirrel: require("../images/squirrel.jpg"),
   survivejs: require("../images/survivejs.png")
 }, v => v.replace('/', ''));
 
@@ -65,12 +70,86 @@ export default class Presentation extends React.Component {
 
           <Slide transition={slideTransition}>
             <Heading size={1}>
+              Performance - What is it?
+            </Heading>
+            <List>
+              <Appear><ListItem>Perceived performance</ListItem></Appear>
+              <Appear><ListItem>Actual performance</ListItem></Appear>
+              <Appear><ListItem>Examples: loading an application or site, performing an operation</ListItem></Appear>
+            </List>
+          </Slide>
+
+          <Slide transition={slideTransition} bgImage={images.progressBarStopped} bgDarken={0.25}>
+            <Heading size={1} caps textColor="primary">
+              No action
+            </Heading>
+            <Layout>
+              <Text>
+                <Link href="http://www.techzim.co.zw/wp-content/uploads/2015/08/progress-bar1.gif">Techzim</Link>
+              </Text>
+            </Layout>
+          </Slide>
+
+          <Slide transition={slideTransition} bgImage={images.progressBar} bgDarken={0.25}>
+            <Heading size={1} caps textColor="primary">
+              Action (better)
+            </Heading>
+            <Layout>
+              <Text>
+                <Link href="http://www.techzim.co.zw/wp-content/uploads/2015/08/progress-bar1.gif">Techzim</Link>
+              </Text>
+            </Layout>
+          </Slide>
+
+          <Slide transition={slideTransition} bgImage={images.squirrel} bgDarken={0.55}>
+            <Heading size={1} caps textColor="primary">
+              Caching
+            </Heading>
+            <Layout>
+              <Text>
+                <Link href="https://pixabay.com/en/squirrel-attention-ears-cute-619968/">Pixabay / Oldiefan</Link>
+              </Text>
+            </Layout>
+          </Slide>
+
+          <Slide transition={slideTransition} bgImage={images.redPanda} bgDarken={0.55}>
+            <Heading size={1} caps textColor="primary">
+              Avoiding Work
+            </Heading>
+            <Layout>
+              <Text>
+                <Link href="https://pixabay.com/en/red-panda-panda-less-pander-958118/">Pixabay / 1447441</Link>
+              </Text>
+            </Layout>
+          </Slide>
+
+          <Slide transition={slideTransition} bgColor="black">
+            <BlockQuote>
+              <Quote>Premature optimization is the root of all evil - Donald Knuth</Quote>
+            </BlockQuote>
+          </Slide>
+
+          <Slide transition={slideTransition}>
+            <Heading size={1}>
+              Performance Tooling
+            </Heading>
+            <List>
+              <Appear><ListItem><code>console.time('foo')</code>, <code>console.timeEnd('foo')</code></ListItem></Appear>
+              <Appear><ListItem><Link href="https://facebook.github.io/react/docs/perf.html">React Performance Tools</Link></ListItem></Appear>
+              <Appear><ListItem><Link href="https://github.com/RamonGebben/react-perf-tool">RamonGebben/react-perf-tool</Link></ListItem></Appear>
+              <Appear><ListItem><Link href="https://github.com/garbles/why-did-you-update">garbles/why-did-you-update</Link></ListItem></Appear>
+            </List>
+          </Slide>
+
+          <Slide transition={slideTransition}>
+            <Heading size={1}>
               <Link href="https://facebook.github.io/react/docs/perf.html">React Performance Tools</Link> 1/2
             </Heading>
             <List>
               <Appear><ListItem>Development mode only - performance overhead</ListItem></Appear>
               <Appear><ListItem>Measure with <code>Perf.start()</code> and <code>Perf.stop()</code></ListItem></Appear>
-              <Appear><ListItem>Get results with <code>Perf.getLastMeasurements()</code></ListItem></Appear>
+              <Appear><ListItem><code>Perf.getLastMeasurements()</code></ListItem></Appear>
+              <Appear><ListItem><Link href="http://survivejs.com/webpack/advanced-techniques/configuring-react/#exposing-react-performance-utilities-to-browser">Webpack setup</Link></ListItem></Appear>
             </List>
           </Slide>
 
@@ -84,6 +163,29 @@ export default class Presentation extends React.Component {
               <Appear><ListItem><code><b>Perf.printWasted(measurements)</b></code></ListItem></Appear>
               <Appear><ListItem><code>Perf.printOperations(measurements)</code></ListItem></Appear>
             </List>
+          </Slide>
+
+          <Slide transition={slideTransition} bgColor="primary">
+            <Heading size={2}>
+              Lifecycle Methods
+            </Heading>
+            <Image src={images.lifecycle} margin="40px auto" height="324px" />
+          </Slide>
+
+          <Slide transition={slideTransition}>
+            <Heading size={4}>
+              Demo
+            </Heading>
+            <CodePane
+              lang="jsx"
+              source={require("raw!../examples/demo.jsx")}
+              margin="20px auto"
+            />
+            <Layout>
+              <Text>
+                <Link href="https://jsbin.com/nicuyo/17/edit?html,js,output">jsbin</Link>
+              </Text>
+            </Layout>
           </Slide>
 
           <Slide transition={slideTransition}>
@@ -104,10 +206,25 @@ export default class Presentation extends React.Component {
               React Tips
             </Heading>
             <List>
-              <Appear><ListItem>Remember to set <code>process.env.NODE_ENV</code> to <code>production</code> when building</ListItem></Appear>
-              <Appear><ListItem>Consider using <Link href="https://www.npmjs.com/package/react-lite">react-lite</Link> or <Link href="https://www.npmjs.com/package/preact">preact</Link></ListItem></Appear>
-              <Appear><ListItem>Leverage client caching (React, other deps) through vendor bundles (hash in name)</ListItem></Appear>
-              <Appear><ListItem>Consider loading vendor dependencies through a CDN with a local fallback</ListItem></Appear>
+              <Appear><ListItem>Remember to set <code>process.env.NODE_ENV</code> to <code>production</code> when building to <b>avoid work</b></ListItem></Appear>
+              <Appear><ListItem>Implement <code>shouldComponentUpdate</code> for critical parts (shallow vs. deep equal) to <b>avoid work</b></ListItem></Appear>
+              <Appear><ListItem>Consider using <Link href="https://www.npmjs.com/package/react-lite">react-lite</Link> or <Link href="https://www.npmjs.com/package/preact">preact</Link> to <b>load faster</b></ListItem></Appear>
+              <Appear><ListItem><Link href="http://reactabular.js.org/#/features/virtualization">Virtualize</Link> and do <b>less work</b></ListItem></Appear>
+              <Appear><ListItem>Let browser carry the burden, do <Link href="http://reactabular.js.org/#/features/resizing-columns"><b>less work</b> again</Link></ListItem></Appear>
+            </List>
+          </Slide>
+
+          <Slide transition={slideTransition}>
+            <Heading size={1}>
+              General Tips
+            </Heading>
+            <List>
+              <Appear><ListItem>Keep your dependencies up to date to <b>avoid work</b></ListItem></Appear>
+              <Appear><ListItem>Leverage client <b>caching</b> (React, other deps) through vendor bundles (hash in name)</ListItem></Appear>
+              <Appear><ListItem>Load vendor dependencies through a CDN with a local fallback to benefit from <b>caching</b></ListItem></Appear>
+              <Appear><ListItem>Enable gzip on your server to <b>avoid work</b></ListItem></Appear>
+              <Appear><ListItem>Check <b>caching</b> settings of your server</ListItem></Appear>
+              <Appear><ListItem>Benchmark and spend most of the time on biggest wins to <b>avoid work</b></ListItem></Appear>
             </List>
           </Slide>
 
@@ -120,6 +237,17 @@ export default class Presentation extends React.Component {
               <Appear><ListItem>Profile the memory usage of your React application using Chrome utilities</ListItem></Appear>
               <Appear><ListItem>*Build your application in production mode and try again. Can you see a difference?</ListItem></Appear>
               <Appear><ListItem>**Build your application with <Link href="https://www.npmjs.com/package/react-lite">react-lite</Link> and try again. Can you see a difference?</ListItem></Appear>
+            </List>
+          </Slide>
+
+          <Slide transition={slideTransition}>
+            <Heading size={1}>
+              More Reading
+            </Heading>
+            <List>
+              <Appear><ListItem><Link href="https://speakerdeck.com/vjeux/react-rally-animated-react-performance-toolbox">Slides - Animated! by @vjeux</Link></ListItem></Appear>
+              <Appear><ListItem><Link href="http://benchling.engineering/performance-engineering-with-react/">Performance Engineering with React (two parts) by Saif Hakim</Link></ListItem></Appear>
+              <Appear><ListItem><Link href="https://medium.com/modus-create-front-end-development/component-rendering-performance-in-react-df859b474adc">Component Rendering Performance in React by Grgur Grisogono</Link></ListItem></Appear>
             </List>
           </Slide>
 
